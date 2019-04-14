@@ -1,0 +1,23 @@
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">  
+
+<Import Project="$(agent_work_dir)\$(msbuild-imports-folder)\common.targets" />  
+<!--<Import Project="$(agent_work_dir)\$(msbuild-imports-folder)\includes.targets"    Condition="'String A'=='String B'" />-->
+
+<Target Name="Build">  
+<Message Text="Building: $(teamcity_build_checkoutDir)\$(solution-file-path)" />
+<MSBuild Projects="$(teamcity_build_checkoutDir)\$(solution-file-path)" Properties="Configuration=$(Configuration)" Targets="Rebuild"/>
+
+</Target>  
+
+<ItemGroup>  
+
+  <ProjectsForNugetPackaging Include="$(solution-root-folder)\Tnn.Library.SourceLinkProvider">
+  <package-id>Tnn.Library.SourceLinkProvider</package-id>
+  <!--<major-version-override>5</major-version-override>
+  <minor-version-override>6</minor-version-override>
+  <build-number-override>7</build-number-override>-->
+  </ProjectsForNugetPackaging>
+   
+</ItemGroup> 
+
+</Project>  
